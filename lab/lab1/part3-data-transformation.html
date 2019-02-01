@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <html>
+<!DOCTYPE html>
   <head>
     <!--stylesheet imports-->
     <link rel="stylesheet" href="leaflet.css" />
@@ -13,8 +13,8 @@
 
     <!--javascript imports-->
     <script src="leaflet.js"></script>
-    <script src="part4-data-clean.js"></script>
-    <script src="part4-data-dirty.js"></script>
+    <script src="part3-data-clean.js"></script>
+    <script src="part3-data-dirty.js"></script>
 
     <script>
 
@@ -62,6 +62,9 @@
     if their formatting is especially wrong. But it should accommodate most points.
 
     ===================== */
+    var raw = bikeArrayDirty;
+    for (let column = 0)
+
 
     var data = bikeArrayClean;
 
@@ -70,8 +73,9 @@
     Start code to filter data
 
     ===================== */
-
-
+    let dataFiltered = [];
+    let filter = (obj) => {if(obj[3] > 20) {dataFiltered.push(obj)}}
+    data.forEach(filter);
 
     /* =====================
 
@@ -97,7 +101,10 @@
     Start code to add markers to map
 
     ===================== */
-
+    let addMarker = (obj) => {
+      L.marker([obj[1], obj[0]]).addTo(map);
+    }
+    dataFiltered.forEach(addMarker);
 
 
     /* =====================
