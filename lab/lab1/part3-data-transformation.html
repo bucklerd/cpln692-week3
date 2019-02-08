@@ -63,10 +63,33 @@
 
     ===================== */
     var raw = bikeArrayDirty;
-    for (let column = 0)
+
+    let data = [];
+
+    let cleaning = (obj) => {
+      console.log(obj);
+      temp = [];
+      if(obj[0].includes("-7")) {
+        n = 0
+      } else {n=1};
+      temp.push(obj[n], obj[n+1]);
+      if(typeof obj[n+2] === 'string') {
+        if(!obj[n+2].includes('stations')) {
+          temp.push(obj[n+2]);
+        } else {temp.push("");};
+        if(obj[n+2].includes('stations')) {
+          temp.push(obj[n+2].substr(0,2));
+        } else if (typeof obj[n+3] === 'string') {
+          temp.push(obj[n+3].substr(0,2));
+        } else {temp.push("")};
+        data.push(temp);
+      }
+    };
+
+    bikeArrayDirty.forEach(cleaning);
 
 
-    var data = bikeArrayClean;
+    //var data = bikeArrayClean;
 
     /* =====================
 
